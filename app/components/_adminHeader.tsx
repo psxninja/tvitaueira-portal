@@ -15,7 +15,11 @@ export default async function MainHeader() {
 				<Link href="/" className={header.title}>
 					<h1>TV Itaueira</h1>
 				</Link>
-				<div onClick={logout} className={header.logout}>
+				<div
+					onClick={() => {
+						logout()
+					}}
+					className={header.logout}>
 					Sair
 				</div>
 			</div>
