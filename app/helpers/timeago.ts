@@ -6,7 +6,7 @@ export const localeFunc = (
 	// number: the timeago / timein number;
 	// index: the index of array below;
 	// totalSec: total seconds between date to be formatted and today's date;
-	return [
+	const translatept = [
 		['Agora', 'Agora pouco'],
 		['há %s segundos', 'há %s segundos'],
 		['há 1 minuto', 'há 1 minuto'],
@@ -21,5 +21,7 @@ export const localeFunc = (
 		['há %s meses', 'há %s meses'],
 		['há 1 ano', 'há 1 ano'],
 		['há %s anos', 'há %s anos']
-	][index]
+	]
+	const translate = translatept[index || 0] as [string, string]
+	return translate
 }

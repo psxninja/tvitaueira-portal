@@ -5,8 +5,7 @@ import Link from 'next/link'
 import header from '../styles/header.module.css'
 
 export default async function MainHeader() {
-	const logout = (evt: React.SyntheticEvent) => {
-		evt.preventDefault()
+	const logout = () => {
 		signOut()
 	}
 

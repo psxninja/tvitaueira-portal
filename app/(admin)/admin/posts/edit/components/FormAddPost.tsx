@@ -12,6 +12,7 @@ const QuillWrapper = dynamic(
 		ssr: false
 	}
 ) as typeof ReactQuill
+import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import { BlogCategoriesType } from '@/app/types/blogCategories'
 import FormPsx from '@/app/components/FormPsx'
@@ -244,7 +245,10 @@ export default function FormEditPost({
 								onChange={onSelectImage}
 							/>
 							{config.selectedImage !== '' ? (
-								<img src={config.selectedImage} />
+								<Image
+									src={config.selectedImage}
+									alt="Post image"
+								/>
 							) : (
 								<IconPicture className="icon-svg" />
 							)}

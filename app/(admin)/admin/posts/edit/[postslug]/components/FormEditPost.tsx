@@ -12,13 +12,14 @@ const QuillWrapper = dynamic(
 		ssr: false
 	}
 ) as typeof ReactQuill
+import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import FormPsx from '@/app/components/FormPsx'
 import IconPicture from '@/app/components/icons/IconPicture'
 import { BlogPostsListType } from '@/app/types/blogPostsList'
+import { BlogCategoriesType } from '@/app/types/blogCategories'
 import styles from '@/app/styles/admin.module.css'
 import styleForm from '@/app/styles/form.module.css'
-import { BlogCategoriesType } from '@/app/types/blogCategories'
 
 export default function FormEditPost({
 	categories,
@@ -245,7 +246,10 @@ export default function FormEditPost({
 								onChange={onSelectImage}
 							/>
 							{config.selectedImage !== '' ? (
-								<img src={config.selectedImage} />
+								<Image
+									src={config.selectedImage}
+									alt="Post image"
+								/>
 							) : (
 								<IconPicture className="icon-svg" />
 							)}
@@ -254,7 +258,10 @@ export default function FormEditPost({
 				</fieldset>
 				<fieldset>
 					<label>Descrição</label>
-					<textarea name="description" rows={3} defaultValue={post.description}></textarea>
+					<textarea
+						name="description"
+						rows={3}
+						defaultValue={post.description}></textarea>
 				</fieldset>
 				<fieldset>
 					<label>Conteúdo</label>
