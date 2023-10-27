@@ -1,0 +1,71 @@
+.bannerHome {
+  width: 100%;
+  display: flex;
+}
+
+.bannerHome img {
+  width: 100%;
+  height: auto;
+}
+
+.introHome {
+  max-width: 70rem;
+}
+
+.tipsBell {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem 0;
+}
+
+.tipsBellTitle {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.tipsBellTip {
+  width: 40%;
+  display: flex;
+}
+.tipsBellTip img {
+  width: 68px;
+  height: 68px;
+  align-self: center;
+  margin: 1rem;
+}
+
+.allCategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.allCategoriesText {
+  width: 100%;
+  text-align: center;
+}
+
+.allCategoriesCard {
+  width: 20%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #497ab1;
+  border: 1px solid var(--primaryBorderColor);
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.allCategoriesCard span {
+  display: block;
+  padding: 1rem;
+  font-weight: 500;
+  color: #fafafa;
+}
+
+.allCategoriesCard:hover {
+  background: var(--primaryColor);
+}

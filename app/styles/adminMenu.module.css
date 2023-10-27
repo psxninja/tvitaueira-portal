@@ -1,0 +1,65 @@
+.dashboardMenu,
+.dashboardMenu ul {
+  list-style: none;
+}
+
+.dashboardMenu ul {
+  width: 100%;
+  list-style: none;
+  margin: 0 0 1rem;
+}
+
+.dashboardMenu li svg {
+  display: inline-block;
+  width: 2.8rem;
+  color: #484848;
+}
+
+.dashboardMenu li svg[data-name='cursos'],
+.dashboardMenu li svg[data-name='cupons'],
+.dashboardMenu li svg[data-name='alunos'] {
+  stroke: currentColor;
+}
+
+.dashboardMenu li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  margin: 0 0 0.2rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dashboardMenuActive > a,
+.dashboardMenuActive:hover > a {
+  background: var(--primaryColor);
+  color: #fafafa;
+}
+
+.dashboardMenu .dashboardMenuActive svg {
+  color: #fafafa;
+}
+
+.dashboardMenu
+  li:not(.dashboardMenuActive):not(.dashboardMenuActiveSub):not(
+    .dashboardMenuActiveChildren
+  )
+  > a:hover {
+  background: rgba(var(--primaryColorRGB), 0.2);
+}
+
+.dashboardMenu ul a {
+  font-weight: 400;
+}
+
+.dashboardMenuActiveSub a,
+.dashboardMenuActiveSub:hover a {
+  background: var(--primaryColor);
+  color: #fafafa;
+}
+.dashboardMenuActiveChildren > a,
+.dashboardMenuActiveChildren:hover > a {
+  background: rgba(var(--primaryColorRGB), 0.2);
+}

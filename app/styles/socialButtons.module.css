@@ -1,0 +1,18 @@
+.socialButtons {
+    display: flex;
+    justify-content: center;
+    margin: var(--padding);
+    gap: 0.8rem;
+}
+.socialButtons a {
+    background-color: #747880;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    border: transparent;
+    padding: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}

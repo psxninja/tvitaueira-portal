@@ -1,0 +1,49 @@
+.form fieldset {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	align-items: center;
+	margin: 1.6rem 0;
+	border: none;
+}
+.form[data-disabled='true']::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 800;
+}
+
+.editor {
+	position: relative;
+}
+
+.editorSwitch {
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	padding: 0.8rem;
+	background: #ffffff;
+	border-radius: 0.5rem;
+	border: 1px solid var(--primaryColor);
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.editorSwitch[data-disabled='true'] {
+	display: none;
+}
+
+.editorCode {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.editor[data-show-code='true'] .editorCode {
+	visibility: visible;
+}

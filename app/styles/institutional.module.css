@@ -1,0 +1,38 @@
+.institutional h1 {
+  color: var(--primaryColor);
+  text-align: center;
+}
+
+.institutional h2 {
+  padding: 1rem 0;
+  color: var(--primaryColor);
+}
+
+.institutional p {
+  margin: 0 0 1rem;
+}
+
+.institutionalText {
+  max-width: 80rem;
+  margin: auto;
+}
+
+.form {
+	width: 100%;
+}
+.form fieldset {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 3%;
+	flex: 1;
+	margin: 1rem 0 0;
+	border: none;
+}
+.form fieldset input,
+.form fieldset select {
+	width: 100%;
+}
+.formfooter {
+	padding: 3.2rem 0 0;
+}
