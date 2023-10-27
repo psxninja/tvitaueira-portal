@@ -4,7 +4,7 @@ import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import header from '../styles/header.module.css'
 
-export default async function MainHeader() {
+export default function MainHeader() {
 	const logout = () => {
 		signOut()
 	}
