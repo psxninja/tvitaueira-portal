@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { BlogCategoriesType } from '@/app/types/blogCategories'
 import IconTVItaueira from './icons/logo'
+import { BlogCategoriesType } from '@/app/types/blogCategories'
 import header from '../styles/header.module.css'
 
 export default function HeaderMenu({

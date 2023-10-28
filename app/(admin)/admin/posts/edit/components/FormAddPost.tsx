@@ -13,7 +13,7 @@ const QuillWrapper = dynamic(
 	}
 ) as typeof ReactQuill
 import Image from 'next/image'
-import React, { useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import { BlogCategoriesType } from '@/app/types/blogCategories'
 import FormPsx from '@/app/components/FormPsx'
 import IconPicture from '@/app/components/icons/IconPicture'
@@ -30,6 +30,7 @@ export default function FormEditPost({
 	const textAreaCodeRef = useRef<any>(null)
 	const [config, setConfig] = useState({
 		editorContent: '',
+		category: '0',
 		categorySlug: '',
 		isHtmlCode: false,
 		selectedImage: '',
@@ -165,6 +166,17 @@ export default function FormEditPost({
 			})
 	}
 
+	const selectCategory = (evt: ChangeEvent<HTMLSelectElement>) => {
+		const category = evt.currentTarget.value
+
+		setConfig((prevState) => {
+			return {
+				...prevState,
+				category
+			}
+		})
+	}
+
 	const onSelectImage = (evt: any) => {
 		if (!evt.target.files.length) return
 
@@ -211,10 +223,11 @@ export default function FormEditPost({
 				<fieldset>
 					<label>Categoria</label>
 					<div>
-						<select name="category" defaultValue={'0'}>
-							<option value={0} disabled>
-								-- Selecione --
-							</option>
+						<select
+							name="category"
+							defaultValue={config.category}
+							onChange={selectCategory}>
+							<option value={0}>-- RASCUNHO --</option>
 							{categories.map((category) => (
 								<option value={category.slug} key={category.id}>
 									{category.title}
@@ -287,7 +300,11 @@ export default function FormEditPost({
 					<label>&nbsp;</label>
 					<div>
 						<button className="buttonPrimary" type="submit">
-							{config.loading ? 'Aguarde...' : 'Publicar'}
+							{config.loading
+								? 'Aguarde...'
+								: config.category === '0'
+								? 'Salvar'
+								: 'Publicar'}
 						</button>
 					</div>
 				</fieldset>

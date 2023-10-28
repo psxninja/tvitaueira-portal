@@ -1,9 +1,9 @@
-import excuteQuery from '../../../lib/db'
 import { extname, join } from 'path'
 import { existsSync } from 'fs'
+import { mkdir, unlink, writeFile } from 'fs/promises'
 import { NextRequest } from 'next/server'
 import { revalidatePath } from 'next/cache'
-import { mkdir, unlink, writeFile } from 'fs/promises'
+import excuteQuery from '@/app/lib/db'
 import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
@@ -53,14 +53,18 @@ export async function POST(req: NextRequest) {
 	}
 
 	const userDataFieldsArr = Object.keys(userData)
-	const userDataFieldArrLen = userDataFieldsArr.length
 	let userDataFields = ''
 	let userDataFieldsI = ''
 	userDataFieldsArr.forEach((field, index) => {
-		if (userData[field] === '' || userData[field] === 'null') return
-		userDataFields +=
-			userDataFieldArrLen - 1 !== index ? `${field},` : `${field}`
-		userDataFieldsI += userDataFieldArrLen - 1 !== index ? `?,` : `?`
+		if (userData[field] === 'null') return
+		if (userData[field] === '') return
+		if (index === 0) {
+			userDataFields += `${field}`
+			userDataFieldsI += `?`
+			return
+		}
+		userDataFields += `,${field}`
+		userDataFieldsI += `,?`
 	})
 	userDataFields += `,createdat`
 	userDataFieldsI += `,?`

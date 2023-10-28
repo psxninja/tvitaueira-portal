@@ -1,9 +1,9 @@
-import excuteQuery from '../../../lib/db'
 import { extname, join } from 'path'
 import { existsSync } from 'fs'
+import { mkdir, unlink, writeFile } from 'fs/promises'
 import { NextRequest } from 'next/server'
 import { revalidatePath } from 'next/cache'
-import { mkdir, unlink, writeFile } from 'fs/promises'
+import excuteQuery from '@/app/lib/db'
 import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
@@ -14,6 +14,11 @@ export async function POST(req: NextRequest) {
 
 	const file = data.get('files[]') as File | null
 	let filename = ''
+	const prevPost: any = await excuteQuery({
+		query: `SELECT image, category
+		FROM posts
+		WHERE slug = '${postslug}'`
+	})
 
 	if (file) {
 		const bytes = await file.arrayBuffer()
@@ -22,13 +27,8 @@ export async function POST(req: NextRequest) {
 		const fileUuid = data.get('slug')
 		filename = `${fileUuid}${fileExt}`
 
-		const postimage: any = await excuteQuery({
-			query: `SELECT image
-			FROM posts
-			WHERE slug = '${postslug}'`
-		})
-		const lastPic = postimage.length
-			? join(`${imgsPath}/${postimage[0].image}`)
+		const lastPic = prevPost.length
+			? join(`${imgsPath}/${prevPost[0].image}`)
 			: ''
 
 		if (!existsSync(imgsPath)) {
@@ -54,11 +54,19 @@ export async function POST(req: NextRequest) {
 
 	const userDataFieldsArr = Object.keys(userData)
 	let userDataFields = ''
-	userDataFieldsArr.forEach((field) => {
-		if (userData[field] === '' || userData[field] === 'null') return
-		userDataFields += `${field}=?,`
+	userDataFieldsArr.forEach((field, index) => {
+		if (userData[field] === 'null') return
+		if (userData[field] === '') return
+		if (index === 0) {
+			userDataFields += `${field}=?`
+			return
+		}
+		userDataFields += `,${field}=?`
 	})
-	userDataFields += `updatedat=?`
+
+	if (prevPost[0].category !== '0') {
+		userDataFields += `,updatedat=?`
+	}
 
 	const userDataValuesArr = Object.values(userData)
 	const userDataValuesArray: string[] = []
@@ -66,11 +74,12 @@ export async function POST(req: NextRequest) {
 		if (value === '' || value === 'null') return
 		userDataValuesArray.push(value)
 	})
-	userDataValuesArray.push(updatedat + '')
 
-	const sqlQuery = `UPDATE posts SET
-						${userDataFields}
-						WHERE slug = '${postslug}'`
+	if (prevPost[0].category !== '0') {
+		userDataValuesArray.push(updatedat + '')
+	}
+
+	const sqlQuery = `UPDATE posts SET ${userDataFields} WHERE slug = '${postslug}'`
 
 	try {
 		const result = (await excuteQuery({
@@ -78,9 +87,11 @@ export async function POST(req: NextRequest) {
 			values: userDataValuesArray
 		})) as SqlResponse
 
+		console.log(userDataFields, userDataValuesArray, result)
+
 		if (result.affectedRows) {
 			revalidatePath('/(blog)', 'page')
-			revalidatePath(`/(admin)/admin/posts`, 'page')
+			revalidatePath(`/(admin)/posts`, 'page')
 			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}

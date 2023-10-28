@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import getUserAdmin from '@/app/services/getUserAdmin'
 import AdminMenu from '@/app/components/AdminMenu'
-import getBlogPostsAllList from './services/getBlogPostsAllList'
 import BlogPostsAllListItem from './components/BlogPostsAllListItem'
+import getBlogPostsAllList from './services/getBlogPostsAllList'
 import styles from '@/app/styles/admin.module.css'
 
 export const metadata: Metadata = {

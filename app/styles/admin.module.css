@@ -1,14 +1,14 @@
 .dashboard {
 	position: relative;
 	display: flex;
-	min-height: calc(100vh - 50px);
+	min-height: calc(100vh - 6rem);
 	padding: 0;
 	background: transparent;
 }
 
 .dashboard > div:nth-child(1) {
 	position: sticky;
-	top: 50px;
+	top: 6rem;
 	align-self: flex-start;
 	width: 25rem;
 	padding: 3.2rem 1.6rem 3.2rem;

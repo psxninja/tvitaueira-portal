@@ -1,5 +1,5 @@
-import { BlogPostsListType } from '@/app/types/blogPostsList'
 import excuteQuery from '../../lib/db'
+import { BlogPostsListType } from '@/app/types/blogPostsList'
 
 export default async function getBlogHighlights() {
 	let posts: BlogPostsListType[] = []

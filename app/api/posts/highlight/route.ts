@@ -1,6 +1,6 @@
 import excuteQuery from '@/app/lib/db'
-import { SqlResponse } from '@/app/types/sqlResponse'
 import { NextRequest } from 'next/server'
+import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
 	const { id, h } = await req.json()
