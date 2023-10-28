@@ -29,7 +29,7 @@ export default function BlogPostListItem({
 			<div>
 				<Link href={`${post.category}/${post.slug}`}>
 					<Image
-						src={`/imgs/posts/${post.image}`}
+						src={`/static/imgs/posts/${post.image}`}
 						width={810}
 						height={540}
 						alt={post.title}

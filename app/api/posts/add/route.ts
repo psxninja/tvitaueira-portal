@@ -8,7 +8,7 @@ import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
 	const updatedat = Math.floor(Date.now() / 1000)
-	const imgsPath = join(process.cwd() + '/public', '/imgs', '/posts')
+	const imgsPath = join(process.cwd() + '/static', '/imgs', '/posts')
 	const data = await req.formData()
 	const postslug = (data.get('slug') + '') as string
 

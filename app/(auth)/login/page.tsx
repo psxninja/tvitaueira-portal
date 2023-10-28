@@ -24,7 +24,7 @@ export default async function LoginPage() {
 			{/* <Link href="/">
 				<Image
 					className={styles.headerLogo}
-					src="/imgs/bellcursos-logo.png"
+					src="/static/imgs/bellcursos-logo.png"
 					width={230}
 					height={80}
 					alt="Bellcursos"

@@ -54,7 +54,7 @@ export default async function BlogPost({ params }: PostTypes) {
 				</span>
 				<div className={blog.image}>
 					<Image
-						src={`/imgs/posts/${post.image}`}
+						src={`/static/imgs/posts/${post.image}`}
 						width={600}
 						height={400}
 						alt={post.title}

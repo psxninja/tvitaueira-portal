@@ -36,7 +36,7 @@ export default function FormEditPost({
 		categorySlug: post.category,
 		category: post.category,
 		isHtmlCode: false,
-		selectedImage: `/imgs/posts/${post.image}`,
+		selectedImage: `/static/imgs/posts/${post.image}`,
 		loading: false
 	})
 	const quillConfig = {
