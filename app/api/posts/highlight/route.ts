@@ -13,7 +13,9 @@ export async function POST(req: NextRequest) {
 	})) as SqlResponse
 
 	if (!setHighlight.affectedRows) {
-		return new Response(JSON.stringify({ code: '2' }))
+		return new Response(JSON.stringify({ code: '2' }), {
+			status: 400
+		})
 	}
 
 	return new Response(JSON.stringify({ code: '1' }))

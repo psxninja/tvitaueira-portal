@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 	})
 
 	if (prevPost[0].category !== '0') {
-		userDataFields += `,created=?`
+		userDataFields += `,createdat=?`
 		userDataFields += `,updatedat=?`
 	}
 
@@ -89,8 +89,6 @@ export async function POST(req: NextRequest) {
 			values: userDataValuesArray
 		})) as SqlResponse
 
-		console.log(userDataFields, userDataValuesArray, result)
-
 		if (result.affectedRows) {
 			revalidatePath('/(blog)', 'page')
 			revalidatePath(`/(admin)/posts`, 'page')
@@ -104,7 +102,9 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '2' }))
+		return new Response(JSON.stringify({ code: '2' }), {
+			status: 400
+		})
 	} catch (error) {
 		if (filename !== '') {
 			const uploadedImageTrash = join(`${imgsPath}/${filename}`)
@@ -112,6 +112,8 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '3', error }))
+		return new Response(JSON.stringify({ code: '3', error }), {
+			status: 500
+		})
 	}
 }
