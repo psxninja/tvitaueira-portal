@@ -50,13 +50,15 @@ export default async function BlogPost({ params }: PostTypes) {
 				<p className={blog.description}>{post.description}</p>
 				<span className={blog.timeago}>
 					{createdat}
-					{post.updatedat !== '0' ? ` | Atualizado ${updated}` : ` | Atualizado ${createdat}`}
+					{post.updatedat !== '0'
+						? ` | Atualizado ${updated}`
+						: ` | Atualizado ${createdat}`}
 				</span>
 				<div className={blog.image}>
 					<Image
-						src={`/static/imgs/posts/${post.image}`}
-						width={600}
-						height={400}
+						src={`posts/${post.image}`}
+						width={810}
+						height={540}
 						alt={post.title}
 						priority
 					/>
