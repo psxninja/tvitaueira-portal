@@ -27,9 +27,13 @@ export default function BlogPostListItem({
 				</span>
 			</div>
 			<div>
-				<Link href={`${post.category}/${post.slug}`} className={blog.thumbnail}>
+				<Link
+					href={`${post.category}/${post.slug}`}
+					className={blog.thumbnail}>
 					<Image
-						src={`posts/${post.image}`}
+						src={`posts/${post.image}?u=${
+							post.updatedat || post.createdat
+						}`}
 						width={810}
 						height={540}
 						alt={post.title}

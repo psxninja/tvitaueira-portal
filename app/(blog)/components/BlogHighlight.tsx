@@ -23,7 +23,9 @@ export default async function BlogHighlights({
 						<h3>{posts[0].title}</h3>
 					</div>
 					<Image
-						src={`posts/${posts[0].image}`}
+						src={`posts/${posts[0].image}?u=${
+							posts[0].updatedat || posts[0].createdat
+						}`}
 						width={810}
 						height={540}
 						alt={posts[0].title}
@@ -51,7 +53,9 @@ export default async function BlogHighlights({
 								<h3>{post.title}</h3>
 							</div>
 							<Image
-								src={`posts/${post.image}`}
+								src={`posts/${post.image}?u=${
+									post.updatedat || post.createdat
+								}`}
 								width={810}
 								height={540}
 								alt={post.title}

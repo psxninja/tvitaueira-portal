@@ -23,6 +23,7 @@
 	padding: 0.5rem;
 	text-transform: uppercase;
 	font-size: 1.6rem;
+	font-weight: 600;
 	color: #fafafa;
 }
 .highlights .hone .honec {
@@ -48,6 +49,10 @@
 	left: -25%;
 	width: auto;
 	height: 100%;
+	transition: transform .2s linear;
+}
+.highlights .hone .honec:hover img {
+	transform: scale(1.05);
 }
 .highlights .htow {
 	width: 45%;
@@ -80,6 +85,10 @@
 	left: 0;
 	width: 100%;
 	height: auto;
+	transition: transform .2s linear;
+}
+.highlights .htow .htowc:hover img {
+	transform: scale(1.05);
 }
 
 @media (max-width: 993px) {
