@@ -24,10 +24,6 @@ export default async function BlogHighlights({
 					</div>
 					<Image
 						src={`posts/${posts[0].image}`}
-						style={{
-							width: '810px',
-							height: 'auto',
-						  }}
 						width={810}
 						height={540}
 						alt={posts[0].title}

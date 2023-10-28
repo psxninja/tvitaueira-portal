@@ -133,6 +133,7 @@
 }
 .postfull p {
 	margin: 0 0 2rem;
+	line-height: 3rem;
 }
 
 @media (max-width: 560px) {

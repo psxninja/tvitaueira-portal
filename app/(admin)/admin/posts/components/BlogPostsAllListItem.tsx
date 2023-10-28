@@ -51,7 +51,7 @@ export default function BlogPostsAllListItem({
 						data-category={post.category}>
 						{post.categorytitle}
 					</span>
-					<Link href={`./posts/edit/${post.slug}`}>
+					<Link href={`/admin/posts/edit/${post.slug}`}>
 						<h3 className={blog.h3}>{post.title}</h3>
 					</Link>
 					<span>{format(+post.createdat * 1000, 'pt-BR')}</span>

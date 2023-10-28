@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
 	})
 
 	if (prevPost[0].category !== '0') {
+		userDataFields += `,created=?`
 		userDataFields += `,updatedat=?`
 	}
 
@@ -76,6 +77,7 @@ export async function POST(req: NextRequest) {
 	})
 
 	if (prevPost[0].category !== '0') {
+		userDataValuesArray.push(updatedat + '')
 		userDataValuesArray.push(updatedat + '')
 	}
 

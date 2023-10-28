@@ -43,6 +43,11 @@ export default function AdminMenu() {
 					path: 'posts-editar',
 					name: 'Criar/Editar matéria',
 					link: '/admin/posts/edit'
+				},
+				{
+					path: 'posts-draft',
+					name: 'Rascunhos',
+					link: '/admin/posts/draft'
 				}
 			]
 		} /* ,

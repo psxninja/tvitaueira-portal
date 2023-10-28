@@ -3,11 +3,11 @@ import { redirect } from 'next/navigation'
 import getUserAdmin from '@/app/services/getUserAdmin'
 import AdminMenu from '@/app/components/AdminMenu'
 import BlogPostsAllListItem from '@/app/(admin)/admin/posts/components/BlogPostsAllListItem'
-import getBlogPostsAllList from '@/app/(admin)/admin/posts/services/getBlogPostsAllList'
+import getBlogPostsDraftList from '@/app/(admin)/admin/posts/draft/services/getBlogPostsDraftList'
 import styles from '@/app/styles/admin.module.css'
 
 export const metadata: Metadata = {
-	title: 'Todas as matérias - TV Itaueira'
+	title: 'Rascunhos - TV Itaueira'
 }
 
 export default async function AdminAddPost() {
@@ -17,7 +17,7 @@ export default async function AdminAddPost() {
 		redirect(`/`)
 	}
 
-	const posts = await getBlogPostsAllList()
+	const posts = await getBlogPostsDraftList()
 
 	return (
 		<main className={styles.dashboard}>
@@ -26,7 +26,7 @@ export default async function AdminAddPost() {
 			</div>
 			<div>
 				<div className={styles.dashboardBox}>
-					<h3>Todas as matérias</h3>
+					<h3>Todas os rascunhos</h3>
 					{posts.map((post) => (
 						<BlogPostsAllListItem
 							post={post}

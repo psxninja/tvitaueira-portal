@@ -34,14 +34,18 @@ export default async function BlogPost({ params }: PostTypes) {
 	const createdhours = (createdatTime.getHours() + '').padStart(2, '0')
 	const createdminutes = (createdatTime.getMinutes() + '').padStart(2, '0')
 
-	const updatedday = (updatedatTime.getDate() + '').padStart(2, '0')
+	/* const updatedday = (updatedatTime.getDate() + '').padStart(2, '0')
 	const updatedmonth = (updatedatTime.getMonth() + 1 + '').padStart(2, '0')
 	const updatedyear = updatedatTime.getFullYear()
 	const updatedhours = (updatedatTime.getHours() + '').padStart(2, '0')
-	const updatedminutes = (updatedatTime.getMinutes() + '').padStart(2, '0')
+	const updatedminutes = (updatedatTime.getMinutes() + '').padStart(2, '0') */
 
 	const createdat = `${createdday}/${createdmonth}/${createdyear} às ${createdhours}:${createdminutes}`
-	const updated = `${updatedday}/${updatedmonth}/${updatedyear} às ${updatedhours}:${updatedminutes}`
+	/* const updated = `${updatedday}/${updatedmonth}/${updatedyear} às ${updatedhours}:${updatedminutes}` */
+	const updated =
+		post.updatedat !== '0'
+			? ` | Atualizado ${format(updatedatTime, 'pt-BR')}`
+			: ` | Atualizado ${format(createdatTime, 'pt-BR')}`
 
 	return (
 		<main>
@@ -50,9 +54,7 @@ export default async function BlogPost({ params }: PostTypes) {
 				<p className={blog.description}>{post.description}</p>
 				<span className={blog.timeago}>
 					{createdat}
-					{post.updatedat !== '0'
-						? ` | Atualizado ${updated}`
-						: ` | Atualizado ${createdat}`}
+					{updated}
 				</span>
 				<div className={blog.image}>
 					<Image
