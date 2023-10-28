@@ -51,7 +51,7 @@ export async function GET(
 		status: 200,
 		headers: new Headers({
 			'content-type': `image/webp`,
-			'Cache-Control': 'public,s-maxage=86400,stale-while-revalidate'
+			'Cache-Control': 'public,max-age=86400,stale-while-revalidate'
 		})
 	})
 
