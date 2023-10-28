@@ -50,7 +50,8 @@ export async function GET(
 	const res = new NextResponse(image, {
 		status: 200,
 		headers: new Headers({
-			'content-type': `image/webp`
+			'content-type': `image/webp`,
+			'Cache-Control': 'public,s-maxage=86400,stale-while-revalidate'
 		})
 	})
 
