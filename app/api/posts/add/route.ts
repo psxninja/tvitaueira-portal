@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 		console.log(result)
 
 		if (result.affectedRows) {
-			revalidatePath('/', 'page')
+			revalidatePath('/page', 'page')
 			revalidatePath(`/admin/posts`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}

@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 		})) as SqlResponse
 
 		if (result.affectedRows) {
-			revalidatePath('/', 'page')
+			revalidatePath('/page', 'page')
 			revalidatePath(`/[categoryslug]/${postslug}`, 'page')
 			revalidatePath(`/admin/posts`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
