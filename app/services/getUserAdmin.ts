@@ -32,7 +32,7 @@ export default async function getUserAdmin() {
 	userInfo = userDb.length ? userDb[0] : {}
 	const idAdmin = admins?.indexOf(u + '')
 
-	if (idAdmin && idAdmin !== -1) {
+	if (idAdmin !== -1) {
 		return userInfo
 	}
 
