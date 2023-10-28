@@ -94,6 +94,7 @@ export async function POST(req: NextRequest) {
 		if (result.affectedRows) {
 			revalidatePath('/(blog)', 'page')
 			revalidatePath(`/(admin)/posts`, 'page')
+			revalidatePath(`/(admin)/posts/draft`, 'page')
 			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
