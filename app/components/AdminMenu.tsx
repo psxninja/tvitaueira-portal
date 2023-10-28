@@ -72,10 +72,18 @@ export default function AdminMenu() {
 		<ul className={styles.dashboardMenu}>
 			{menu.map((item, index) => (
 				<li className={itemActive(item.path)} key={index}>
-					<Link href={item.link}>
-						{/* <item.icon data-name={item.path} /> */}
-						<span>{item.name}</span>
-					</Link>
+					{item.link === '/admin/postss' ? (
+						<a href={item.link}>
+							{/* <item.icon data-name={item.path} /> */}
+							<span>{item.name}</span>
+						</a>
+					) : (
+						<Link href={item.link}>
+							{/* <item.icon data-name={item.path} /> */}
+							<span>{item.name}</span>
+						</Link>
+					)}
+
 					{item.childrens ? (
 						<ul>
 							{item.childrens.map((item2, index2) => (
