@@ -81,6 +81,7 @@ export async function POST(req: NextRequest) {
 		if (result.affectedRows) {
 			revalidatePath('/', 'page')
 			revalidatePath(`/[categoryslug]/${postslug}`, 'page')
+			revalidatePath(`/admin/posts`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
 		if (filename !== '') {

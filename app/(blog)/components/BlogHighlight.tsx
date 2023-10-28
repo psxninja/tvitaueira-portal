@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import getBlogHighlights from '../services/getBlogHighlights'
+import { BlogPostsListType } from '@/app/types/blogPostsList'
 import highlights from '@/app/styles/highlights.module.css'
 
-export default async function BlogHighlights() {
-	const posts = await getBlogHighlights()
+export default async function BlogHighlights({
+	posts
+}: {
+	posts: BlogPostsListType[]
+}) {
 	return (
 		<div className={highlights.highlights}>
 			<div className={highlights.hone}>

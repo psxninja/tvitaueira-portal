@@ -1,9 +1,12 @@
-import getBlogPostsList from '../services/getBlogPostsList'
-import blog from '../../styles/blog.module.css'
 import BlogPostListItem from './BlogPostsListItem'
+import { BlogPostsListType } from '@/app/types/blogPostsList'
+import blog from '../../styles/blog.module.css'
 
-export default async function BlogPostList() {
-	const posts = await getBlogPostsList()
+export default async function BlogPostList({
+	posts
+}: {
+	posts: BlogPostsListType[]
+}) {
 	return (
 		<div className={blog.blog}>
 			<h2>Últimas notícias</h2>
