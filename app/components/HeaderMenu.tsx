@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { BlogCategoriesType } from '@/app/types/blogCategories'
+import IconTVItaueira from './icons/logo'
 import header from '../styles/header.module.css'
 
 export default function HeaderMenu({
@@ -24,6 +25,7 @@ export default function HeaderMenu({
 		<>
 			<div className={header.left}>
 				<Link href="/" className={header.title}>
+					<IconTVItaueira />
 					<h1>TV Itaueira</h1>
 				</Link>
 			</div>
@@ -67,6 +69,7 @@ export default function HeaderMenu({
 				</ul>
 				<div
 					className={header.menuHamburguer}
+					data-active={config.menuMobile}
 					onClick={() => {
 						clickMenu()
 					}}>

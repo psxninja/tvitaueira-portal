@@ -24,6 +24,7 @@ export default async function BlogHighlights() {
 						width={810}
 						height={540}
 						alt={posts[0].title}
+						priority={true}
 					/>
 				</Link>
 			</div>

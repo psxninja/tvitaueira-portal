@@ -2,6 +2,7 @@ import excuteQuery from '../../../lib/db'
 import { extname, join } from 'path'
 import { existsSync } from 'fs'
 import { NextRequest } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { mkdir, unlink, writeFile } from 'fs/promises'
 import { SqlResponse } from '@/app/types/sqlResponse'
 
@@ -83,6 +84,7 @@ export async function POST(req: NextRequest) {
 		console.log(result)
 
 		if (result.affectedRows) {
+			revalidatePath('/', 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
 		if (filename !== '') {

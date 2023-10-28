@@ -22,7 +22,9 @@ export default function BlogPostListItem({
 					<h3>{post.title}</h3>
 					<p>{post.description}</p>
 				</Link>
-				<span className={blog.timeago}>{format(+post.createdat * 1000, 'pt-BR')}</span>
+				<span className={blog.timeago}>
+					{format(+post.createdat * 1000, 'pt-BR')}
+				</span>
 			</div>
 			<div>
 				<Link href={`${post.category}/${post.slug}`}>

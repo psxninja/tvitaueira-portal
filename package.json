@@ -17,6 +17,7 @@
     "react-dom": "^18",
     "react-quill": "^2.0.0",
     "serverless-mysql": "^1.5.5",
+    "sharp": "^0.32.6",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {

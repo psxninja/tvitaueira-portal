@@ -249,6 +249,7 @@ export default function FormEditPost({
 								<Image
 									src={config.selectedImage}
 									alt="Post image"
+									fill={true}
 								/>
 							) : (
 								<IconPicture className="icon-svg" />
