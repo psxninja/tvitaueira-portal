@@ -102,7 +102,7 @@ export default function FormEditPost({
 		textAreaCodeRef.current.value = content
 	}
 
-	const setSlug = (inputSlugValue: string) => {
+	/* const setSlug = (inputSlugValue: string) => {
 		const formattedSlug = inputSlugValue
 			.trim()
 			.toLocaleLowerCase()
@@ -118,7 +118,7 @@ export default function FormEditPost({
 				categorySlug: formattedSlug
 			}
 		})
-	}
+	} */
 
 	const sendForm = (formHandle: any) => {
 		const image = document.querySelector(
@@ -194,9 +194,9 @@ export default function FormEditPost({
 							type="text"
 							required
 							defaultValue={post.title}
-							onChange={(evt) => {
+							/* onChange={(evt) => {
 								setSlug(evt.target.value)
-							}}></input>
+							}} */></input>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -205,10 +205,11 @@ export default function FormEditPost({
 					</label>
 					<div>
 						<input
-							name="slug"
+							name="slugpost"
 							type="text"
 							required
 							ref={inputSlugRef}
+							disabled
 							defaultValue={post.slug}></input>
 					</div>
 				</fieldset>

@@ -2,7 +2,8 @@
 
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import header from '../styles/header.module.css'
+import IconTVItaueira from './icons/logo'
+import header from '@/app/styles/header.module.css'
 
 export default function MainHeader() {
 	const logout = () => {
@@ -13,6 +14,7 @@ export default function MainHeader() {
 		<header className={header.header}>
 			<div className={header.align}>
 				<Link href="/" className={header.title}>
+					<IconTVItaueira />
 					<h1>TV Itaueira</h1>
 				</Link>
 				<div

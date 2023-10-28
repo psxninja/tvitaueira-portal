@@ -3,12 +3,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import IconDashboard from './icons/dashboard/IconDashboard'
-import IconCategory from './icons/dashboard/IconCategory'
-import IconCourse from './icons/dashboard/IconCourse'
-import IconStudent from './icons/dashboard/IconStudent'
-import IconSale from './icons/dashboard/IconSale'
-import IconCoupon from './icons/dashboard/IconCoupon'
 import styles from '../styles/adminMenu.module.css'
+import IconNewspaper from './icons/dashboard/IconNewspaper'
 
 export default function AdminMenu() {
 	/* const router = useRouter()
@@ -18,13 +14,13 @@ export default function AdminMenu() {
 	const routerSubSubActive = routerPath[4] */
 
 	const menu = [
-		/* {
+		{
 			path: 'admin',
 			name: 'Dashboard',
 			link: '/admin',
 			icon: IconDashboard
 		},
-		{
+		/* {
 			path: 'categorias',
 			name: 'Categorias',
 			link: '/admin/categorias',
@@ -41,7 +37,7 @@ export default function AdminMenu() {
 			path: 'posts',
 			name: 'Matérias',
 			link: '/admin/posts',
-			/* icon: IconCourse, */
+			icon: IconNewspaper,
 			childrens: [
 				{
 					path: 'posts-editar',
@@ -72,17 +68,10 @@ export default function AdminMenu() {
 		<ul className={styles.dashboardMenu}>
 			{menu.map((item, index) => (
 				<li className={itemActive(item.path)} key={index}>
-					{item.link === '/admin/postss' ? (
-						<a href={item.link}>
-							{/* <item.icon data-name={item.path} /> */}
-							<span>{item.name}</span>
-						</a>
-					) : (
-						<Link href={item.link}>
-							{/* <item.icon data-name={item.path} /> */}
-							<span>{item.name}</span>
-						</Link>
-					)}
+					<Link href={item.link}>
+						{item.icon ? <item.icon data-name={item.path} /> : null}
+						<span>{item.name}</span>
+					</Link>
 
 					{item.childrens ? (
 						<ul>

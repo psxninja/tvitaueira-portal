@@ -232,6 +232,15 @@ svg {
 	height: auto;
 	fill: currentColor;
 }
+svg {
+	display: inline-table;
+	width: 2rem;
+	height: auto;
+	fill: currentColor;
+}
+path[stroke='#000'] {
+	stroke: currentColor;
+}
 
 .noselect {
 	user-select: none;
