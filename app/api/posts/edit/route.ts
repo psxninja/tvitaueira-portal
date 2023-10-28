@@ -79,9 +79,9 @@ export async function POST(req: NextRequest) {
 		})) as SqlResponse
 
 		if (result.affectedRows) {
-			revalidatePath('/', 'layout')
-			revalidatePath(`/[categoryslug]/${postslug}`, 'page')
-			revalidatePath(`/admin/posts`, 'page')
+			revalidatePath('/(blog)', 'page')
+			revalidatePath(`/(admin)/admin/posts`, 'page')
+			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
 		if (filename !== '') {
