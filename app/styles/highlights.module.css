@@ -10,9 +10,6 @@
 	display: flex;
 	width: 55%;
 }
-.highlights .hone h3 {
-	font-size: 3rem;
-}
 .highlights .content {
 	position: absolute;
 	bottom: 0;
@@ -30,7 +27,6 @@
 	position: relative;
 	display: flex;
 	height: 100%;
-	border-radius: 1.6rem;
 	overflow: hidden;
 }
 .highlights .hone .honec::after {
@@ -41,7 +37,6 @@
 	content: '';
 	display: block;
 	position: absolute;
-	border-radius: 4px;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, #000 100%);
 }
 .highlights .hone .honec img {
@@ -49,7 +44,7 @@
 	left: -25%;
 	width: auto;
 	height: 100%;
-	transition: transform .2s linear;
+	transition: transform 0.2s linear;
 }
 .highlights .hone .honec:hover img {
 	transform: scale(1.05);
@@ -66,7 +61,6 @@
 	padding-bottom: 56.25%;
 	height: 0;
 	overflow: hidden;
-	border-radius: 1.6rem;
 }
 .highlights .htow .htowc::after {
 	top: 0;
@@ -76,7 +70,6 @@
 	content: '';
 	display: block;
 	position: absolute;
-	border-radius: 4px;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, #000 100%);
 }
 .highlights .htow .htowc img {
@@ -85,22 +78,13 @@
 	left: 0;
 	width: 100%;
 	height: auto;
-	transition: transform .2s linear;
+	transition: transform 0.2s linear;
 }
 .highlights .htow .htowc:hover img {
 	transform: scale(1.05);
 }
 
 @media (max-width: 993px) {
-	.highlights .hone {
-		width: 50%;
-	}
-	.highlights .htow {
-		width: 50%;
-	}
-}
-
-@media (max-width: 910px) {
 	.highlights {
 		flex-direction: column;
 	}
@@ -112,60 +96,14 @@
 	}
 	.highlights .hone .honec {
 		width: 100%;
-		height: 0;
-		padding-bottom: 56.25%;
+		height: auto;
 	}
 	.highlights .hone .honec img {
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
-		height: auto;
-	}
-}
-
-@media (max-width: 560px) {
-	.highlights .content {
-		position: relative;
-		bottom: inherit;
-	}
-	.highlights h3 {
-		padding: 0 0 1.6rem;
-		color: var(--bodyTextColorBlack);
-	}
-	.highlights .hone .honec {
-		flex-direction: column;
-		height: auto;
-		border-radius: 0;
-		border-bottom-left-radius: 1.6rem;
-		border-bottom-right-radius: 1.6rem;
-		padding: 0 0 1.6rem;
-	}
-	.highlights .hone .honec::after {
-		display: none;
-	}
-	.highlights .hone .honec img {
-		position: relative;
 		left: 0;
-		width: 100%;
-		height: auto;
-		border-radius: 1.6rem;
 	}
-
-	.highlights .htow .htowc {
-		flex-direction: column;
-		height: auto;
-		border-radius: 0;
-		padding: 0 0 1.6rem;
-	}
-	.highlights .htow .htowc::after {
-		display: none;
-	}
-	.highlights .htow .htowc img {
-		position: relative;
-		left: 0;
-		width: 100%;
-		height: auto;
-		border-radius: 1.6rem;
+	.highlights .hone .honec:hover img,
+	.highlights .htow .htowc:hover img {
+		transform: scale(1);
 	}
 }

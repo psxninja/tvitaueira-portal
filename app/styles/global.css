@@ -66,7 +66,7 @@ body {
 main {
 	width: 100%;
 	max-width: var(--max-width);
-	min-height: calc(100vh - 81px);
+	min-height: calc(100vh - 6rem);
 	background: var(--background-main);
 	padding: calc(var(--padding) * 2);
 	padding-top: 3.2rem;
@@ -83,8 +83,11 @@ hr {
 a {
 	position: relative;
 	text-decoration: none;
-	font-size: 2rem;
 	color: var(--bodyTextColorPrimary);
+}
+p {
+	margin: 0 0 2rem;
+	line-height: 2.6rem;
 }
 
 progress {
@@ -303,6 +306,17 @@ h2[data-category='esporte'] {
 }
 h2[data-category='politica'] {
 	color: var(--politica);
+}
+
+@media (max-width: 993px) {
+	body {
+		font-size: 1.8rem;
+	}
+	main > div {
+		width: 100%;
+		max-width: 60rem;
+		margin: auto;
+	}
 }
 
 @media (max-width: 560px) {

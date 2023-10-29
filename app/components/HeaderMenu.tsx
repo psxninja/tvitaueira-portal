@@ -32,14 +32,11 @@ export default function HeaderMenu({
 			<div className={header.right}>
 				<ul className={header.menu}>
 					<li>
-						<Link href="/">As Últimas</Link>
-					</li>
-					<li>
 						<Link
 							className="hm"
-							href="/internacional"
-							data-category="internacional">
-							Internacional
+							href="/politica"
+							data-category="politica">
+							Política
 						</Link>
 					</li>
 					<li>
@@ -53,17 +50,17 @@ export default function HeaderMenu({
 					<li>
 						<Link
 							className="hm"
-							href="/politica"
-							data-category="politica">
-							Política
+							href="/esporte"
+							data-category="esporte">
+							Esporte
 						</Link>
 					</li>
 					<li>
 						<Link
 							className="hm"
-							href="/esporte"
-							data-category="esporte">
-							Esporte
+							href="/internacional"
+							data-category="internacional">
+							Internacional
 						</Link>
 					</li>
 				</ul>
@@ -85,9 +82,6 @@ export default function HeaderMenu({
 				onClick={() => {
 					clickMenu()
 				}}>
-				<li>
-					<Link href="/">As Últimas</Link>
-				</li>
 				{categories.map((category) => (
 					<li key={category.id}>
 						<Link

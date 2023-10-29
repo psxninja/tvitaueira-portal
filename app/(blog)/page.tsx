@@ -9,9 +9,11 @@ export default async function Home() {
 
 	return (
 		<main>
+			<div>
 			<BlogHighlights posts={highlights} />
 			<div className="padding32"></div>
 			<BlogPostList posts={posts} />
+			</div>
 		</main>
 	)
 }

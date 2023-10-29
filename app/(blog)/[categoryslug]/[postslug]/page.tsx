@@ -50,26 +50,30 @@ export default async function BlogPost({ params }: PostTypes) {
 	return (
 		<main>
 			<div className={blog.postfull}>
+				<span className={blog.category} data-category={post.category}>
+					{post.categorytitle}
+				</span>
 				<h2>{post.title}</h2>
 				<p className={blog.description}>{post.description}</p>
 				<span className={blog.timeago}>
 					{createdat}
 					{updated}
 				</span>
-				<div className={blog.image}>
-					<Image
-						src={`posts/${post.image}`}
-						width={810}
-						height={540}
-						alt={post.title}
-						priority
-					/>
+				<div className={blog.content}>
+					<div className={blog.image}>
+						<Image
+							src={`posts/${post.image}`}
+							width={810}
+							height={540}
+							alt={post.title}
+							priority
+						/>
+					</div>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: post.content
+						}}></div>
 				</div>
-				<div
-					className={blog.content}
-					dangerouslySetInnerHTML={{
-						__html: post.content
-					}}></div>
 			</div>
 		</main>
 	)
