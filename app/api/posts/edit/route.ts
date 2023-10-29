@@ -65,8 +65,10 @@ export async function POST(req: NextRequest) {
 	})
 
 	if (prevPost[0].category !== '0') {
-		userDataFields += `,createdat=?`
 		userDataFields += `,updatedat=?`
+	}
+	if (prevPost[0].category === '0') {
+		userDataFields += `,createdat=?`
 	}
 
 	const userDataValuesArr = Object.values(userData)
@@ -78,6 +80,8 @@ export async function POST(req: NextRequest) {
 
 	if (prevPost[0].category !== '0') {
 		userDataValuesArray.push(updatedat + '')
+	}
+	if (prevPost[0].category === '0') {
 		userDataValuesArray.push(updatedat + '')
 	}
 
@@ -93,6 +97,7 @@ export async function POST(req: NextRequest) {
 			revalidatePath('/(blog)', 'page')
 			revalidatePath(`/(admin)/posts`, 'page')
 			revalidatePath(`/(admin)/posts/draft`, 'page')
+			revalidatePath(`/(blog)/${userData.category}`, 'page')
 			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
@@ -102,9 +107,7 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '2' }), {
-			status: 400
-		})
+		return new Response(JSON.stringify({ code: '2' }), { status: 400 })
 	} catch (error) {
 		if (filename !== '') {
 			const uploadedImageTrash = join(`${imgsPath}/${filename}`)

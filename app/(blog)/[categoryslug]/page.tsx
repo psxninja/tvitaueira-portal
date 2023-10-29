@@ -24,7 +24,7 @@ export default async function BlogPostByCategory({ params }: PostTypes) {
 
 	return (
 		<main>
-			<h2 className={blog.title} data-category={posts[0].category}>
+			<h2 className={blog.categoryTitle} data-category={posts[0].category}>
 				{category.title}
 			</h2>
 			<div className={blog.blog}>

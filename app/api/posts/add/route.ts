@@ -88,6 +88,9 @@ export async function POST(req: NextRequest) {
 		if (result.affectedRows) {
 			revalidatePath('/(blog)', 'page')
 			revalidatePath(`/(admin)/admin/posts`, 'page')
+			revalidatePath(`/(admin)/admin/posts/draft`, 'page')
+			revalidatePath(`/(blog)/${userData.category}`, 'page')
+			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
 		if (filename !== '') {
@@ -96,9 +99,7 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '2' }), {
-			status: 400
-		})
+		return new Response(JSON.stringify({ code: '2' }), { status: 400 })
 	} catch (error) {
 		if (filename !== '') {
 			const uploadedImageTrash = join(`${imgsPath}/${filename}`)

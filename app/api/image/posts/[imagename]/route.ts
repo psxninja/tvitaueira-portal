@@ -21,9 +21,7 @@ export async function GET(
 
 	if (!_width) {
 		if (width !== 'full') {
-			return new Response(JSON.stringify({ code: '2' }), {
-				status: 400
-			})
+			return new Response(JSON.stringify({ code: '2' }), { status: 400 })
 		}
 	}
 
@@ -40,9 +38,7 @@ export async function GET(
 	]
 
 	if (!formats.includes(ext)) {
-		return new Response(JSON.stringify({ code: '3' }), {
-			status: 400
-		})
+		return new Response(JSON.stringify({ code: '3' }), { status: 400 })
 	}
 
 	const pathImage = path.resolve('./files/imgs/posts', imagename)

@@ -279,33 +279,24 @@ path[stroke='#000'] {
 }
 
 span[data-category='internacional'],
+h2[data-category='internacional'],
 .hm[data-category='internacional']::after {
 	background: var(--internacional);
 }
 span[data-category='economia'],
+h2[data-category='economia'],
 .hm[data-category='economia']::after {
 	background: var(--economia);
 }
 span[data-category='esporte'],
+h2[data-category='esporte'],
 .hm[data-category='esporte']::after {
 	background: var(--esporte);
 }
 span[data-category='politica'],
+h2[data-category='politica'],
 .hm[data-category='politica']::after {
 	background: var(--politica);
-}
-
-h2[data-category='internacional'] {
-	color: var(--internacional);
-}
-h2[data-category='economia'] {
-	color: var(--economia);
-}
-h2[data-category='esporte'] {
-	color: var(--esporte);
-}
-h2[data-category='politica'] {
-	color: var(--politica);
 }
 
 @media (max-width: 993px) {

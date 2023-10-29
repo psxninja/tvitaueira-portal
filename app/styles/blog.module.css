@@ -6,6 +6,12 @@
 .title {
 	margin: 0 0 1.6rem;
 }
+.categoryTitle {
+	display: inline-block;
+	margin: 0 0 1.6rem;
+	padding: 0.5rem 1rem;
+	color: #ffffff;
+}
 
 .post {
 	display: flex;

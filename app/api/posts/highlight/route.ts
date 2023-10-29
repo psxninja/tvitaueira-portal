@@ -1,5 +1,6 @@
 import excuteQuery from '@/app/lib/db'
 import { NextRequest } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
@@ -13,10 +14,10 @@ export async function POST(req: NextRequest) {
 	})) as SqlResponse
 
 	if (!setHighlight.affectedRows) {
-		return new Response(JSON.stringify({ code: '2' }), {
-			status: 400
-		})
+		return new Response(JSON.stringify({ code: '2' }), { status: 400 })
 	}
+
+	revalidatePath('/(blog)', 'page')
 
 	return new Response(JSON.stringify({ code: '1' }))
 }
