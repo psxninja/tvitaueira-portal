@@ -65,27 +65,35 @@
 }
 
 .menuMobile {
-	display: none;
+	visibility: hidden;
 	position: absolute;
 	top: 6rem;
 	right: 0;
-	width: 30rem;
+	width: 0;
 	height: calc(100vh - 3.6rem);
 	padding: 1.6rem 0;
 	overflow-y: scroll;
 	background: rgba(var(--backgroundMainRGB), 1);
+	transition: visibility 0.5s 0.5s linear, width 0.2s 0s linear;
 }
 .menuMobile[data-active='true'] {
-	display: block;
+	width: 30rem;
+	visibility: visible;
+	transition: visibility 0.5s 0s linear, width 0.2s 0s linear;
 }
 .menuMobileBack {
 	position: fixed;
 	top: 6rem;
 	left: -100%;
 	width: 200%;
-	height: calc(100vh - 3.6rem);
+	height: calc(100vh - 6rem);
 	z-index: -1;
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.4);
+	opacity: 0;
+	transition: opacity 0.5s linear;
+}
+.menuMobile[data-active='true'] .menuMobileBack {
+	opacity: 1;
 }
 .menuMobile hr {
 	width: 100%;
@@ -95,6 +103,7 @@
 }
 .menuMobile li {
 	display: block;
+	white-space: nowrap;
 }
 .menuMobile li a {
 	position: relative;
@@ -162,11 +171,5 @@
 @media (max-width: 900px) {
 	.menu {
 		display: none;
-	}
-}
-
-@media (max-width: 560px) {
-	.menuMobile {
-		width: 100%;
 	}
 }

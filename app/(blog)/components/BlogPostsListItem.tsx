@@ -1,18 +1,24 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { format, register } from 'timeago.js'
-import { localeFunc } from '@/app/helpers/timeago'
+/* import { format, register } from 'timeago.js'
+import { localeFunc } from '@/app/helpers/timeago' */
 import { BlogPostsListType } from '@/app/types/blogPostsList'
 import blog from '@/app/styles/blog.module.css'
 
-register('pt-BR', localeFunc)
+/* register('pt-BR', localeFunc) */
 
 export default function BlogPostListItem({
 	post
 }: {
 	post: BlogPostsListType
 }) {
-	const timeago = format(+post.createdat * 1000, 'pt-BR')
+	const createdatTime = new Date(+post.createdat * 1000)
+	const createdday = (createdatTime.getDate() + '').padStart(2, '0')
+	const createdmonth = (createdatTime.getMonth() + 1 + '').padStart(2, '0')
+	const createdyear = createdatTime.getFullYear()
+	const createdhours = (createdatTime.getHours() + '').padStart(2, '0')
+	const createdminutes = (createdatTime.getMinutes() + '').padStart(2, '0')
+	const createdat = `${createdday}/${createdmonth}/${createdyear} às ${createdhours}:${createdminutes}`
 
 	return (
 		<div className={blog.post}>
@@ -24,7 +30,7 @@ export default function BlogPostListItem({
 					<h3>{post.title}</h3>
 					<p>{post.description}</p>
 				</Link>
-				<span className={blog.timeago}>{timeago}</span>
+				<span className={blog.timeago}>{createdat}</span>
 			</div>
 			<div>
 				<Link

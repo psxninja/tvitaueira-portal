@@ -7,7 +7,6 @@ export default async function BlogPostList() {
 
 	return (
 		<div className={blog.blog}>
-			<h2>Últimas notícias</h2>
 			{posts.map((post) => (
 				<BlogPostListItem post={post} key={post.createdat} />
 			))}

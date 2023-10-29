@@ -32,6 +32,7 @@ export default async function BlogPostByCategory({ params }: PostTypes) {
 					<BlogPostListItem post={post} key={post.createdat} />
 				))}
 			</div>
+			<div className="padding64"></div>
 		</main>
 	)
 }

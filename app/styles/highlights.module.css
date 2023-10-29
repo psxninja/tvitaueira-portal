@@ -8,7 +8,7 @@
 }
 .highlights .hone {
 	display: flex;
-	width: 55%;
+	width: 50%;
 }
 .highlights .content {
 	position: absolute;
@@ -41,16 +41,17 @@
 }
 .highlights .hone .honec img {
 	position: relative;
-	left: -25%;
+	left: 50%;
+	transform: translateX(-50%);
 	width: auto;
 	height: 100%;
 	transition: transform 0.2s linear;
 }
 .highlights .hone .honec:hover img {
-	transform: scale(1.05);
+	transform: translateX(-50%) scale(1.05);
 }
 .highlights .htow {
-	width: 45%;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -101,9 +102,10 @@
 	.highlights .hone .honec img {
 		width: 100%;
 		left: 0;
+		transform: translateX(0);
 	}
 	.highlights .hone .honec:hover img,
 	.highlights .htow .htowc:hover img {
-		transform: scale(1);
+		transform: translateX(0) scale(1);
 	}
 }

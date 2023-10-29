@@ -6,8 +6,9 @@ export default async function Home() {
 		<main>
 			<div>
 				<BlogHighlights />
-				<div className="padding32"></div>
+				<div className="padding64"></div>
 				<BlogPostList />
+				<div className="padding64"></div>
 			</div>
 		</main>
 	)
