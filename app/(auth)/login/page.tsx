@@ -3,7 +3,9 @@ import { Metadata } from 'next'
 import Link from 'next/link' */
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { authOptions } from '../../api/auth/[...nextauth]/route'
+import IconTVItaueira from '@/app/components/icons/logo'
 import LoginForm from './components/LoginForm'
 /* import { NotificationProvider } from '../../contexts/Notification' */
 import styles from '../../styles/login.module.css'
@@ -21,17 +23,9 @@ export default async function LoginPage() {
 
 	return (
 		<main className={styles.login}>
-			{/* <Link href="/">
-				<Image
-					className={styles.headerLogo}
-					src="/static/imgs/bellcursos-logo.png"
-					width={230}
-					height={80}
-					alt="Bellcursos"
-					title="Voltar para a Home"
-					priority
-				/>
-			</Link> */}
+			<Link href="/">
+				<IconTVItaueira />
+			</Link>
 			<div>&nbsp;</div>
 			{/* <NotificationProvider> */}
 			<LoginForm />

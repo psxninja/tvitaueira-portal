@@ -3,14 +3,14 @@ import { existsSync } from 'fs'
 import { mkdir, unlink, writeFile } from 'fs/promises'
 import { NextRequest } from 'next/server'
 import { revalidatePath } from 'next/cache'
-import excuteQuery from '@/app/lib/db'
+import sql from '@/app/lib/db'
 import { SqlResponse } from '@/app/types/sqlResponse'
 
 export async function POST(req: NextRequest) {
 	const updatedat = Math.floor(Date.now() / 1000)
 	const imgsPath = join(process.cwd() + '/files', '/imgs', '/posts')
 	const data = await req.formData()
-	const postslug = (data.get('slug') + '') as string
+	const postslug = data.get('slug')
 
 	const file = data.get('files[]') as File | null
 	let filename = ''
@@ -19,77 +19,53 @@ export async function POST(req: NextRequest) {
 		const bytes = await file.arrayBuffer()
 		const buffer = Buffer.from(bytes)
 		const fileExt = extname(file.name)
-		const fileUuid = data.get('slug')
-		filename = `${fileUuid}${fileExt}`
-
-		const postimage: any = await excuteQuery({
-			query: `SELECT image
-			FROM posts
-			WHERE slug = '${postslug}'`
-		})
-		const lastPic = postimage.length
-			? join(`${imgsPath}/${postimage[0].image}`)
-			: ''
+		filename = `${postslug}${fileExt}`
 
 		if (!existsSync(imgsPath)) {
 			await mkdir(imgsPath)
 		}
 
-		if (existsSync(lastPic)) {
-			await unlink(lastPic)
-		}
-
 		await writeFile(join(`${imgsPath}/${filename}`), buffer)
 	}
 
-	const userData: { [key: string]: string } = {
-		title: (data.get('title') + '') as string,
+	const sqlData: { [key: string]: FormDataEntryValue | null } = {
+		title: data.get('title'),
 		slug: postslug,
-		category: (data.get('category') + '') as string,
-		visible: (data.get('visible') + '') as string,
+		category: data.get('category') || '0',
+		visible: data.get('visible'),
 		image: file ? filename : '',
-		description: (data.get('description') + '') as string,
-		content: (data.get('content') + '') as string
+		description: data.get('description'),
+		content: data.get('content')
 	}
 
-	const userDataFieldsArr = Object.keys(userData)
-	let userDataFields = ''
-	let userDataFieldsI = ''
-	userDataFieldsArr.forEach((field, index) => {
-		if (userData[field] === 'null') return
-		if (userData[field] === '') return
-		if (index === 0) {
-			userDataFields += `${field}`
-			userDataFieldsI += `?`
-			return
-		}
-		userDataFields += `,${field}`
-		userDataFieldsI += `,?`
-	})
-	userDataFields += `,createdat`
-	userDataFieldsI += `,?`
+	const sqlDataKeys = [...(new Set(Object.keys(sqlData)) as unknown as [])]
+	const sqlDataValues = [
+		...(new Set(Object.values(sqlData)) as unknown as [])
+	]
 
-	const userDataValuesArr = Object.values(userData)
-	const userDataValuesArray: string[] = []
-	userDataValuesArr.forEach((value) => {
-		if (value === '' || value === 'null') return
-		userDataValuesArray.push(value)
-	})
-	userDataValuesArray.push(updatedat + '')
-
-	const sqlQuery = `INSERT IGNORE INTO posts(${userDataFields}) VALUES(${userDataFieldsI})`
+	if (sqlDataKeys.length !== sqlDataValues.length) {
+		return new Response(JSON.stringify({ code: '2' }), { status: 400 })
+	}
 
 	try {
-		const result = (await excuteQuery({
-			query: sqlQuery,
-			values: userDataValuesArray
-		})) as SqlResponse
+		const insertedPost = (await sql`INSERT IGNORE INTO
+		posts(title,slug,category,visible,image,description,content,createdat)
+		VALUES(
+			${sqlData.title},
+			${sqlData.slug},
+			${sqlData.category},
+			${sqlData.visible},
+			${sqlData.image},
+			${sqlData.description},
+			${sqlData.content},
+			${updatedat}
+		)`) as SqlResponse
 
-		if (result.affectedRows) {
+		if (insertedPost.affectedRows) {
 			revalidatePath('/(blog)', 'page')
 			revalidatePath(`/(admin)/admin/posts`, 'page')
 			revalidatePath(`/(admin)/admin/posts/draft`, 'page')
-			revalidatePath(`/(blog)/${userData.category}`, 'page')
+			revalidatePath(`/(blog)/${sqlData.category}`, 'page')
 			revalidatePath(`/(blog)/[categoryslug]/${postslug}`, 'page')
 			return new Response(JSON.stringify({ code: '1' }))
 		}
@@ -99,7 +75,8 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '2' }), { status: 400 })
+
+		return new Response(JSON.stringify({ code: '3' }), { status: 400 })
 	} catch (error) {
 		if (filename !== '') {
 			const uploadedImageTrash = join(`${imgsPath}/${filename}`)
@@ -107,8 +84,7 @@ export async function POST(req: NextRequest) {
 				await unlink(uploadedImageTrash)
 			}
 		}
-		return new Response(JSON.stringify({ code: '3', error }), {
-			status: 500
-		})
+
+		return new Response(JSON.stringify({ code: '4' }), { status: 500 })
 	}
 }

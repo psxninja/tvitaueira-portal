@@ -29,6 +29,11 @@
 	border-radius: var(--border-radius);
 }
 
+.login svg {
+	height: 10rem;
+	width: auto;
+}
+
 .loginTitle {
 	font-size: 2.4rem;
 	text-align: center;

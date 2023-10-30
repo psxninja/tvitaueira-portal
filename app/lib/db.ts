@@ -20,15 +20,13 @@ export const db = mysql({
 	}
 })
 
-export default async function excuteQuery({
-	query,
-	values
-}: {
-	query: string
-	values?: any[]
-}) {
+export default async function sql(
+	query: TemplateStringsArray,
+	...values: any[]
+) {
+	const sqlQuery = query.raw.join('?')
 	try {
-		const results = await db.query(query, values)
+		const results = await db.query(sqlQuery, values)
 		await db.end()
 		return results
 	} catch (error) {
